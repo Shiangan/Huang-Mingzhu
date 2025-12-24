@@ -29,36 +29,37 @@
             --max-w: 420px; 
         }
 
-        /* 核心：鎖定字體 100%，不隨系統調整 */
-        html, body { 
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden !important; 
-            /* 絕對鎖定字體比例 */
+        /* 核心鎖定：強制禁止所有設備的字體自動調整（長輩機防禦） */
+        html {
             -webkit-text-size-adjust: 100% !important; 
             -moz-text-size-adjust: 100% !important;
             -ms-text-size-adjust: 100% !important;
             text-size-adjust: 100% !important;
-            /* 鎖死縮放手勢 */
-            touch-action: pan-y !important;
-            background-color: #e5ddd5;
-        }
-
-        /* 全域文字鎖定：防止字體大小變異 */
-        * { 
-            box-sizing: border-box; 
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
-            font-size-adjust: none !important;
-            -webkit-font-smoothing: antialiased;
+            touch-action: pan-y !important; /* 禁止雙指撥動縮放，僅允許垂直滑動 */
         }
 
         body { 
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important; 
             color: var(--ink); 
             font-family: 'Noto Serif TC', serif; 
             line-height: 1.8;
-            position: relative;
+            background-color: #e5ddd5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 鎖定所有文字標籤：無視系統設定 */
+        p, div, span, b, a, h1, h2, section, header, b, i {
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+            font-size-adjust: none !important;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
         }
 
         .app-wrapper { 
@@ -104,7 +105,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
         }
         
-        /* 姓名與日期：強制不換行，保持大小一致 */
+        /* 姓名區域鎖定：不換行、字體大小絕對固定 */
         .name-hero { font-size: 42px; font-weight: 900; letter-spacing: 0.2em; margin: 20px 0; text-align: center; white-space: nowrap; }
         .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; text-align: center; }
         .date-hero { font-size: 72px; font-weight: 900; line-height: 1; text-align: center; color: var(--ink); margin-top: 10px; white-space: nowrap; }
@@ -129,7 +130,8 @@
         .ink-anim { animation: inkFadeIn 2.8s forwards; }
         @keyframes inkFadeIn { 0% { opacity: 0; filter: blur(12px); transform: translateY(-10px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
 
-        .btn-action { display: block; width: 100%; padding: 18px; border: 1.5px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; font-size: 14px; letter-spacing: 4px; font-weight: 700; margin-top: 30px; border-radius: 4px; }
+        .btn-action { display: block; width: 100%; padding: 18px; border: 1.5px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; font-size: 14px; letter-spacing: 4px; font-weight: 700; margin-top: 30px; border-radius: 4px; transition: 0.3s; }
+        .btn-action:active { background: var(--gold); color: #fff; }
         
         .contact-box { background: rgba(180, 151, 122, 0.08); padding: 35px 20px; border-radius: 16px; margin: 0 20px 30px; border: 1px solid rgba(180, 151, 122, 0.1); }
         .contact-btns { display: flex; gap: 10px; margin-top: 20px; }
@@ -223,6 +225,7 @@
         <section class="reveal">
             <span class="section-title">電子訃聞 ‧ 詳情參閱</span>
             <img src="image/IMG_6780.jpeg" class="img-inner" style="width: 80%;" onclick="zoom(this.src)">
+            <p style="text-align:center; font-size:12px; color:var(--gold); margin-top:20px; letter-spacing: 2px;">( 點擊圖片可放大閱讀全文 )</p>
         </section>
 
         <section class="reveal">
@@ -232,8 +235,12 @@
                 <img src="image/交通00003.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00002.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00001.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
+                <img src="image/交通00007.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
+                <img src="image/交通00006.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
+                <img src="image/交通00009.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
+                <img src="image/交通00008.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
             </div>
-            <a href="https://maps.app.goo.gl/台北市立殯儀館至仁四廳" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=台北市立殯儀館" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <div class="calligraphy-area" id="thanksSec">
@@ -241,6 +248,8 @@
                 <div class="ink-line">致 每一位溫暖的您</div>
                 <div class="ink-line">謝謝這段日子的關懷與陪伴</div>
                 <div class="ink-line">每一句問候 每一份情誼</div>
+                <div class="ink-line">就像是穿透雲層的微光</div>
+                <div class="ink-line">溫柔地照亮了這份思念</div>
                 <div class="ink-line">這份真誠厚情 永誌於心</div>
                 <div class="ink-line ink-last-line">
                     家屬 <b style="border-bottom: 2px solid var(--gold);">全體家眷</b> 叩謝
@@ -250,23 +259,29 @@
 
         <div class="contact-box">
             <div style="text-align: center; border-bottom: 1px solid rgba(180, 151, 122, 0.2); padding-bottom: 20px; margin-bottom: 20px;">
+                <div style="font-size: 13px; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px;">家屬聯繫專線</div>
                 <div style="font-size: 18px; font-weight: 600;">孝女 玉華</div>
                 <div class="contact-btns">
                     <a href="tel:0926278218" class="btn-call">撥打專線</a>
                 </div>
             </div>
+
             <div style="text-align: center;">
+                <div style="font-size: 12px; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px;">禮儀服務</div>
                 <div style="font-size: 16px; font-weight: 600;">陳柏元 先生</div>
                 <div class="contact-btns">
                     <a href="tel:0938179858" class="btn-call">撥打專員</a>
                     <a href="https://line.me/ti/p/nZJmE8-b6X" class="btn-line">LINE 聯繫</a>
                 </div>
+                <div style="margin-top: 15px; font-size: 11px; color: var(--sub-ink);">24小時服務專線：0938-179-858</div>
             </div>
         </div>
 
         <footer>
             <div class="brand-seal"><span>祥安<br>生命</span></div>
             <div style="font-size: 21px; font-weight: 700; letter-spacing: 8px; color: var(--ink);">祥安生命有限公司</div>
+            <div style="width: 50px; height: 1px; background: var(--gold); margin: 25px auto 15px; opacity: 0.4;"></div>
+            <div style="font-size: 9px; letter-spacing: 6px; color: var(--gold); opacity: 0.7;">SHIANG AN LIFE</div>
         </footer>
     </main>
 </div>
@@ -279,7 +294,7 @@
 <div id="lightbox" onclick="this.style.display='none'"><img id="lbi" src="" alt="zoom"></div>
 
 <script>
-    // 終極防禦：禁止所有縮放手勢
+    // 鎖定縮放：透過 JavaScript 攔截所有可能的縮放行為
     (function() {
         document.addEventListener('touchstart', function(event) {
             if (event.touches.length > 1) event.preventDefault();
@@ -292,6 +307,7 @@
         }, false);
     })();
 
+    // 監測滾動顯示
     const obs = new IntersectionObserver(es => es.forEach(e => {
         if(e.isIntersecting) {
             e.target.classList.add('visible');
@@ -304,25 +320,37 @@
     }), {threshold: 0.1});
     document.querySelectorAll('section, .calligraphy-area').forEach(s => obs.observe(s));
 
+    // 背景音樂啟動
     const bgm = document.getElementById('bgm');
-    const startM = () => { if(bgm.paused){ bgm.volume = 0.4; bgm.play().catch(() => {}); } };
-    ['click', 'touchstart'].forEach(e => document.addEventListener(e, startM, {once: true}));
+    const startM = () => { 
+        if(bgm.paused){ 
+            bgm.volume = 0.4; 
+            bgm.play().catch(() => {}); 
+        } 
+    };
+    ['click', 'touchstart', 'scroll'].forEach(e => {
+        document.addEventListener(e, startM, {once: true});
+    });
 
+    // 放大圖片
     function zoom(src) { 
         document.getElementById('lbi').src = src; 
         document.getElementById('lightbox').style.display = 'flex'; 
     }
     
+    // 複製文字
     function copyText() {
-        const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30";
+        const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30\n安靈地點：鼎峰會館 [ 清靜廳 ]";
         const ta = document.createElement("textarea"); ta.value = info; document.body.appendChild(ta);
         ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
         alert("奠禮資訊已複製。");
     }
 
+    // 加入行事曆
     function addCal() { 
         const title = encodeURIComponent("【追思】黃明珠 夫人 告別奠禮");
-        window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260105T075000/20260105T093000&location=台北市立殯儀館`); 
+        const loc = encodeURIComponent("台北市立殯儀館 至仁四廳");
+        window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260105T075000/20260105T093000&location=${loc}&details=家奠07:50+公奠08:30`); 
     }
 </script>
 

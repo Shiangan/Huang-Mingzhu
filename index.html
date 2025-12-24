@@ -25,26 +25,29 @@
             --gold: #b4977a;  
             --sub-ink: #7a7169;
             --seal-red: #a52a2a;
-            --max-w: 420px; /* 最佳化安全寬度 */
+            --max-w: 420px; /* 黃金鎖定寬度 */
         }
 
-        /* 核心鎖定：不允許任何形式的自動調整與溢出 */
+        /* 終極鎖定：禁止系統縮放與字體干預 */
         html, body { 
             width: 100%;
-            height: 100%;
             margin: 0;
             padding: 0;
-            overflow-x: hidden !important;
-            /* 強制禁止所有手機系統調整字體大小 */
+            overflow-x: hidden !important; 
             -webkit-text-size-adjust: 100% !important; 
             -moz-text-size-adjust: 100% !important;
             -ms-text-size-adjust: 100% !important;
             text-size-adjust: 100% !important;
+            /* 鎖死縮放手勢：禁止雙指撥動，僅允許捲動 */
+            touch-action: pan-y !important;
             background-color: #e5ddd5;
         }
 
+        /* 強制所有層級無視系統字體大小 */
         * { 
             box-sizing: border-box; 
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
             -webkit-font-smoothing: antialiased;
             -webkit-tap-highlight-color: transparent;
         }
@@ -54,12 +57,6 @@
             font-family: 'Noto Serif TC', serif; 
             line-height: 1.8;
             position: relative;
-        }
-
-        /* 全域文字鎖定：再次確保所有層級文字不被放大 */
-        p, div, span, b, a, h1, h2 {
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
         }
 
         .app-wrapper { 
@@ -74,7 +71,6 @@
             overflow-x: hidden !important;
         }
 
-        /* 浮水印 */
         .bg-watermark {
             position: fixed; bottom: 12%; left: 50%; transform: translateX(-50%);
             font-size: 80px; font-weight: 900;
@@ -101,7 +97,7 @@
         .section-title { font-size: 15px; letter-spacing: 8px; color: var(--gold); font-weight: 700; margin-bottom: 40px; text-align: center; display: block; }
         
         .img-inner { 
-            display: block; width: 90%; max-width: 380px; margin: 0 auto; height: auto; 
+            display: block; width: 90%; max-width: 360px; margin: 0 auto; height: auto; 
             cursor: pointer; border-radius: 2px; padding: 8px; background: #fff;
             box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
         }
@@ -119,7 +115,7 @@
         .notice-item { font-size: 13px; color: var(--sub-ink); margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.6; }
         .notice-item::before { content: "◆"; color: var(--gold); margin-right: 10px; font-size: 10px; margin-top: 2px; }
 
-        /* 書法詩詞防溢出優化 */
+        /* 書法詩詞鎖定：強制不換行 */
         .calligraphy-area { padding: 60px 5px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
         .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 100%; height: 480px; overflow: hidden; }
         .ink-line { 
@@ -241,7 +237,7 @@
                 <img src="image/交通00009.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00008.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
             </div>
-            <a href="https://maps.app.goo.gl/台北市立殯儀館" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
+            <a href="https://maps.app.goo.gl/台北市立殯儀館至仁四廳" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <div class="calligraphy-area" id="thanksSec">
@@ -295,6 +291,7 @@
 <div id="lightbox" onclick="this.style.display='none'"><img id="lbi" src="" alt="zoom"></div>
 
 <script>
+    // 1. 滾動顯示監測
     const obs = new IntersectionObserver(es => es.forEach(e => {
         if(e.isIntersecting) {
             e.target.classList.add('visible');
@@ -307,6 +304,7 @@
     }), {threshold: 0.1});
     document.querySelectorAll('section, .calligraphy-area').forEach(s => obs.observe(s));
 
+    // 2. 音樂啟動器 (相容各平台)
     const bgm = document.getElementById('bgm');
     const startM = () => { 
         if(bgm.paused){ 
@@ -318,11 +316,13 @@
         document.addEventListener(e, startM, {once: true});
     });
 
+    // 3. 圖片放大與複寫禁止縮放
     function zoom(src) { 
         document.getElementById('lbi').src = src; 
         document.getElementById('lightbox').style.display = 'flex'; 
     }
     
+    // 4. 文字複製功能
     function copyText() {
         const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30\n安靈地點：鼎峰會館 [ 清靜廳 ]";
         if (navigator.clipboard) {
@@ -334,6 +334,7 @@
         }
     }
 
+    // 5. 加入行事曆功能
     function addCal() { 
         const title = encodeURIComponent("【追思】黃明珠 夫人 告別奠禮");
         const loc = encodeURIComponent("台北市立殯儀館 至仁四廳");

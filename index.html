@@ -8,7 +8,7 @@
     <link rel="icon" href="image/logo.png" type="image/png">
     <meta property="og:image" content="https://24hour.xn--kpry57d/Huang-Mingzhu/image/Write.png">
     <meta property="og:type" content="website">
-    <title>永恆思念：黃明珠 夫人 </title>
+    <title>永恆思念：黃明珠 夫人</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&display=swap" rel="stylesheet">
     
@@ -28,28 +28,27 @@
             --max-w: 480px;
         }
 
-        /* 核心鎖定：無視系統字體大小設定 */
-        html { 
+        /* 徹底解決溢出與字體縮放 */
+        html, body { 
+            width: 100%;
+            overflow-x: hidden !important;
             -webkit-text-size-adjust: 100% !important; 
             -moz-text-size-adjust: 100% !important;
             -ms-text-size-adjust: 100% !important;
             text-size-adjust: 100% !important;
             scroll-behavior: smooth;
+            background-color: #e5ddd5; 
+            margin: 0;
+            padding: 0;
         }
 
         * { 
             box-sizing: border-box; 
             -webkit-font-smoothing: antialiased; 
-            margin: 0; 
-            padding: 0; 
             -webkit-tap-highlight-color: transparent;
         }
 
         body { 
-            width: 100%; 
-            max-width: 100vw; 
-            overflow-x: hidden; 
-            background-color: #e5ddd5; 
             color: var(--ink); 
             font-family: 'Noto Serif TC', serif; 
             line-height: 1.8; 
@@ -64,7 +63,7 @@
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden !important;
         }
 
         .bg-watermark {
@@ -85,15 +84,22 @@
         }
 
         section { 
-            padding: 60px 22px; width: 100%; position: relative; z-index: 1; 
+            padding: 40px 20px; width: 100%; position: relative; z-index: 1; 
             opacity: 0; transform: translateY(30px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         section.visible { opacity: 1; transform: translateY(0); }
 
         .section-title { font-size: 15px; letter-spacing: 8px; color: var(--gold); font-weight: 700; margin-bottom: 40px; text-align: center; display: block; }
-        .img-inner { display: block; max-width: 90%; margin: 0 auto; height: auto; cursor: pointer; border-radius: 2px; padding: 8px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.07); }
+        
+        /* 圖片容器防溢出 */
+        .img-inner { 
+            display: block; width: 90%; max-width: 400px; margin: 0 auto; height: auto; 
+            cursor: pointer; border-radius: 2px; padding: 8px; background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
+        }
+        
         .name-hero { font-size: 42px; font-weight: 900; letter-spacing: 0.2em; margin: 20px 0; text-align: center; white-space: nowrap; }
-        .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; text-align: center;}
+        .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; text-align: center; }
         .date-hero { font-size: 72px; font-weight: 900; line-height: 1; text-align: center; color: var(--ink); margin-top: 10px; }
         .date-sub { text-align: center; font-size: 14px; letter-spacing: 2px; color: var(--sub-ink); }
         
@@ -105,20 +111,26 @@
         .notice-item { font-size: 13px; color: var(--sub-ink); margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.6; }
         .notice-item::before { content: "◆"; color: var(--gold); margin-right: 10px; font-size: 10px; margin-top: 2px; }
 
-        .calligraphy-area { padding: 80px 10px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
-        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 100%; max-width: 420px; height: 500px; }
-        .ink-line { writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 22px; letter-spacing: 8px; line-height: 1.8; opacity: 0; filter: blur(12px); white-space: nowrap; margin: 0 4px; }
-        .ink-last-line { margin-top: 120px !important; margin-right: 12px !important; color: var(--gold); font-weight: 600; }
+        /* 書法詩詞防溢出優化 */
+        .calligraphy-area { padding: 60px 5px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
+        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 100%; max-width: 100%; height: 480px; }
+        .ink-line { 
+            writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 20px; 
+            letter-spacing: 6px; line-height: 1.6; opacity: 0; filter: blur(12px); 
+            white-space: nowrap; margin: 0 3px; 
+        }
+        .ink-last-line { margin-top: 100px !important; margin-right: 10px !important; color: var(--gold); font-weight: 600; }
         .ink-anim { animation: inkFadeIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @keyframes inkFadeIn { 0% { opacity: 0; filter: blur(12px); transform: translateY(-10px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
 
         .btn-action { display: block; width: 100%; padding: 18px; border: 1.5px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; font-size: 14px; letter-spacing: 4px; font-weight: 700; margin-top: 30px; border-radius: 4px; transition: 0.3s; }
         .btn-action:active { background: var(--gold); color: #fff; }
         
-        .contact-box { background: rgba(180, 151, 122, 0.08); padding: 35px 22px; border-radius: 16px; margin: 0 22px 30px; border: 1px solid rgba(180, 151, 122, 0.1); }
-        .contact-btns { display: flex; gap: 12px; margin-top: 20px; }
-        .btn-call { flex: 1; background: var(--gold); color: #fff; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
-        .btn-line { flex: 1; background: #06C755; color: #fff; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
+        .contact-box { background: rgba(180, 151, 122, 0.08); padding: 35px 20px; border-radius: 16px; margin: 0 20px 30px; border: 1px solid rgba(180, 151, 122, 0.1); }
+        .contact-btns { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-call, .btn-line { flex: 1; color: #fff; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
+        .btn-call { background: var(--gold); }
+        .btn-line { background: #06C755; }
 
         .float-nav { position: fixed; bottom: 35px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
         .float-nav img { width: 56px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18)); }
@@ -130,12 +142,11 @@
         .brand-seal { width: 55px; height: 55px; border: 2.5px solid var(--seal-red); display: flex; align-items: center; justify-content: center; border-radius: 4px; transform: rotate(-3deg); margin: 0 auto 20px; }
         .brand-seal span { font-family: 'ZF-Font', serif; font-size: 15px; color: var(--seal-red); font-weight: 900; line-height: 1.1; }
 
-        /* 再次強力鎖定字體不隨系統變大 */
+        /* 強制鎖定字體不隨系統變大 */
         p, div, span, b, a {
             -webkit-text-size-adjust: 100% !important;
             text-size-adjust: 100% !important;
         }
-        .app-wrapper { overflow-x: hidden !important; }
     </style>
 </head>
 
@@ -164,7 +175,7 @@
                 <div class="year-label">1927 — 2025</div>
                 <img src="image/IMG_6779.jpeg" class="img-inner" onclick="zoom(this.src)">
                 <div class="name-hero">黃明珠 <span style="font-size: 20px; font-weight: 400; letter-spacing: 2px;">夫人</span></div>
-                <p style="font-size: 15px; color: var(--ink); line-height: 2.8; letter-spacing: 1.8px; margin-top: 30px; padding: 0 15px;">
+                <p style="font-size: 15px; color: var(--ink); line-height: 2.8; letter-spacing: 1.8px; margin-top: 30px; padding: 0 10px;">
                     我們最敬愛的 <span style="font-weight: 700; border-bottom: 1.5px solid var(--gold);">黃明珠 夫人</span><br>
                     於 民國 114 年 12 月 24 日<br>
                     在家人的陪伴與守護下<br>
@@ -189,14 +200,14 @@
             </div>
 
             <div style="text-align: center; margin-bottom: 40px;">
-                <div style="margin-bottom:30px; padding: 22px; background: rgba(255,255,255,0.4); border-radius: 8px; border: 1px solid rgba(180, 151, 122, 0.1);">
+                <div style="margin-bottom:25px; padding: 22px; background: rgba(255,255,255,0.4); border-radius: 8px; border: 1px solid rgba(180, 151, 122, 0.1);">
                     <span style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing: 3px; display: block; margin-bottom: 8px;">安靈地點 (牌位區)</span>
                     <div style="font-size: 18px; font-weight: 600;">鼎峰會館  <br>  [ 清靜廳 ]</div>
                 </div>
 
                 <div>
                     <span style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing: 3px; display: block; margin-bottom: 8px;">追思奠禮會場</span>
-                    <div style="font-size: 23px; font-weight: 600; color: var(--ink);">台北市立殯儀館 [ 至仁四廳 ]</div>
+                    <div style="font-size: 21px; font-weight: 600; color: var(--ink);">台北市立殯儀館 [ 至仁四廳 ]</div>
                 </div>
             </div>
 
@@ -212,13 +223,13 @@
 
         <section class="reveal">
             <span class="section-title">電子訃聞 ‧ 詳情參閱</span>
-            <img src="image/IMG_6780.jpeg" class="img-inner" style="max-width: 75%;" onclick="zoom(this.src)">
+            <img src="image/IMG_6780.jpeg" class="img-inner" style="width: 80%;" onclick="zoom(this.src)">
             <p style="text-align:center; font-size:12px; color:var(--gold); margin-top:20px; letter-spacing: 2px;">( 點擊圖片可放大閱讀全文 )</p>
         </section>
 
         <section class="reveal">
             <span class="section-title">會場位置與交通</span>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px;">
                 <img src="image/交通00004.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00003.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00002.GIF" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
@@ -228,7 +239,7 @@
                 <img src="image/交通00009.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00008.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
             </div>
-            <a href="https://maps.app.goo.gl/uXv7F9mK2i4WpAnSA" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
+            <a href="https://maps.app.goo.gl/台北市立殯儀館一館" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <div class="calligraphy-area" id="thanksSec">
@@ -275,13 +286,14 @@
 </div>
 
 <div class="float-nav">
-    <a href="tel:0938179858"><img src="image/24小時專線.png"></a>
-    <a href="https://line.me/ti/p/nZJmE8-b6X"><img src="image/聯繫line.PNG"></a>
+    <a href="tel:0938179858"><img src="image/24小時專線.png" alt="24hr"></a>
+    <a href="https://line.me/ti/p/nZJmE8-b6X"><img src="image/聯繫line.PNG" alt="line"></a>
 </div>
 
-<div id="lightbox" onclick="this.style.display='none'"><img id="lbi" src=""></div>
+<div id="lightbox" onclick="this.style.display='none'"><img id="lbi" src="" alt="zoom"></div>
 
 <script>
+    // 滾動顯示動畫
     const obs = new IntersectionObserver(es => es.forEach(e => {
         if(e.isIntersecting) {
             e.target.classList.add('visible');
@@ -294,6 +306,7 @@
     }), {threshold: 0.1});
     document.querySelectorAll('section, .calligraphy-area').forEach(s => obs.observe(s));
 
+    // 音樂自動播放 (需互動)
     const bgm = document.getElementById('bgm');
     const startM = () => { 
         if(bgm.paused){ 
@@ -301,15 +314,17 @@
             bgm.play().catch(() => {}); 
         } 
     };
-    ['click', 'touchstart', 'scroll', 'mousedown'].forEach(e => {
+    ['click', 'touchstart', 'scroll'].forEach(e => {
         document.addEventListener(e, startM, {once: true});
     });
 
+    // 放大圖片
     function zoom(src) { 
         document.getElementById('lbi').src = src; 
         document.getElementById('lightbox').style.display = 'flex'; 
     }
     
+    // 複製資訊
     function copyText() {
         const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30\n安靈地點：鼎峰會館 [ 清靜廳 ]";
         if (navigator.clipboard) {
@@ -321,6 +336,7 @@
         }
     }
 
+    // 加入行事曆
     function addCal() { 
         const title = encodeURIComponent("【追思】黃明珠 夫人 告別奠禮");
         const loc = encodeURIComponent("台北市立殯儀館 至仁四廳");

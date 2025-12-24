@@ -9,20 +9,14 @@
         @font-face { font-family: 'ZF-Font'; src: url('Zf-Font.ttf') format('truetype'); font-display: swap; }
         
         :root { 
-            --bg: #fdfbf9; /* 純淨象牙白 */
-            --ink: #3d3631; /* 暖炭棕 */
+            --bg: #fdfbf9; 
+            --ink: #3d3631; 
             --gold: #b59a7d; 
             --gold-light: #f4eee6;
             --max-w: 430px; 
         }
 
-        /* 核心防護：鎖定字體大小與防止跳行 */
-        html { 
-            -webkit-text-size-adjust: none !important; 
-            text-size-adjust: none !important; 
-            scroll-behavior: smooth;
-        }
-        
+        html { -webkit-text-size-adjust: none !important; text-size-adjust: none !important; scroll-behavior: smooth; }
         * { box-sizing: border-box; -webkit-text-size-adjust: none !important; }
 
         body { 
@@ -35,7 +29,6 @@
             min-height: 100vh; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.05);
         }
 
-        /* 防止字體跳行的通用類別 */
         .no-wrap { white-space: nowrap !important; }
 
         header { text-align: center; padding: 60px 0 20px; }
@@ -44,22 +37,23 @@
         section { padding: 40px 30px; opacity: 0; transform: translateY(15px); transition: 1.2s ease-out; }
         section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 照片區域：精緻比例 */
-        .hero-img { 
-            width: 100%; display: block; border-radius: 2px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.07); cursor: zoom-in;
+        .hero-img { width: 100%; display: block; border-radius: 2px; box-shadow: 0 12px 35px rgba(0,0,0,0.07); cursor: zoom-in; }
+        .hero-name { font-size: 52px !important; font-weight: 900; letter-spacing: 0.3em; text-align: center; margin: 40px 0 5px; text-indent: 0.3em; white-space: nowrap; }
+        .hero-subtitle { text-align: center; font-size: 16px; color: var(--gold); letter-spacing: 8px; margin-bottom: 30px; white-space: nowrap; }
+
+        /* --- 新增：訃聞紙張區塊 --- */
+        .obituary-paper {
+            background: #fff; padding: 15px; margin: 20px 0;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0; position: relative;
         }
-        .hero-name { 
-            font-size: 52px !important; font-weight: 900; letter-spacing: 0.3em; 
-            text-align: center; margin: 40px 0 5px; text-indent: 0.3em;
-            white-space: nowrap;
-        }
-        .hero-subtitle { 
-            text-align: center; font-size: 16px; color: var(--gold); 
-            letter-spacing: 8px; margin-bottom: 50px; white-space: nowrap;
+        .obituary-paper img { width: 100%; display: block; cursor: zoom-in; }
+        .paper-tag { 
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: #fff; font-size: 11px; padding: 4px 15px;
+            letter-spacing: 4px; font-weight: 600; white-space: nowrap;
         }
 
-        /* 資訊區塊：無縫淡色底 */
         .info-area { 
             background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
             padding: 50px 30px; margin: 20px 0; border-top: 1px solid rgba(181, 154, 125, 0.1);
@@ -68,37 +62,22 @@
         .title { font-size: 26px; font-weight: 600; margin-bottom: 10px; white-space: nowrap; }
         .desc { font-size: 16px; line-height: 2.2; opacity: 0.85; }
 
-        /* 儀程大字日期：確保單行顯示 */
-        .date-container { 
-            display: flex; align-items: center; justify-content: center; margin: 40px 0; 
-            white-space: nowrap;
-        }
+        .date-container { display: flex; align-items: center; justify-content: center; margin: 40px 0; white-space: nowrap; }
         .big-date { font-size: 105px !important; font-weight: 900; color: var(--gold); letter-spacing: -5px; line-height: 0.8; }
         .date-side { margin-left: 15px; border-left: 1.5px solid var(--gold); padding-left: 15px; text-align: left; }
 
-        /* 按鈕：極簡質感 */
-        .btn { 
-            display: block; width: 100%; padding: 20px; text-align: center; 
-            text-decoration: none; font-weight: 600; letter-spacing: 4px; 
-            margin-top: 20px; border-radius: 2px; font-size: 16px; white-space: nowrap;
-        }
+        .btn { display: block; width: 100%; padding: 20px; text-align: center; text-decoration: none; font-weight: 600; letter-spacing: 4px; margin-top: 20px; border-radius: 2px; font-size: 16px; white-space: nowrap; }
         .btn-dark { background: var(--ink); color: #fff; }
         .btn-gold { background: var(--gold); color: #fff; }
         .btn-outline { border: 1px solid var(--gold); color: var(--gold); }
 
-        /* 摺疊設計 */
-        .acc-row { 
-            display: flex; justify-content: space-between; padding: 25px 0; 
-            border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; font-weight: 600;
-        }
+        .acc-row { display: flex; justify-content: space-between; padding: 25px 0; border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; font-weight: 600; }
         .acc-row span { letter-spacing: 3px; }
         .acc-row i { font-style: normal; color: var(--gold); transition: 0.3s; font-size: 20px; }
         .acc-row.active i { transform: rotate(45deg); }
-        
         .acc-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
         .acc-content.open { max-height: 2500px; padding: 20px 0; }
 
-        /* 感謝區書法 */
         .ink-wrap { padding: 100px 0; display: flex; flex-direction: row-reverse; justify-content: center; height: 500px; }
         .ink-l { writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 28px !important; letter-spacing: 12px; margin: 0 18px; opacity: 0; white-space: nowrap; }
         .ink-visible { animation: inkShow 3s forwards; }
@@ -108,7 +87,7 @@
         .seal-stamp { font-family: 'ZF-Font'; font-size: 28px; color: var(--gold); border: 1.5px solid; width: 75px; margin: 0 auto 25px; padding: 6px; }
 
         #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); display:none; justify-content:center; align-items:center; z-index:9999; }
-        #lightbox img { max-width: 92%; max-height: 85%; }
+        #lightbox img { max-width: 92%; max-height: 90%; box-shadow: 0 0 50px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -123,7 +102,14 @@
             <img src="image/IMG_6779.jpeg" class="hero-img" onclick="zoom(this.src)">
             <div class="hero-name no-wrap">黃明珠</div>
             <div class="hero-subtitle no-wrap">夫人 ‧ 享耆壽九十九歲</div>
-            <p style="line-height: 2.8; text-align: center; letter-spacing: 3px; opacity: 0.9; font-size: 17px !important;">
+            
+            <div class="obituary-paper">
+                <span class="paper-tag">正式訃聞公告</span>
+                <img src="image/obituary_full.jpg" alt="正式訃聞" onclick="zoom(this.src)">
+                <p style="text-align:center; font-size:12px; color:var(--gold); margin-top:10px;">( 點擊圖片可放大閱讀全文 )</p>
+            </div>
+
+            <p style="line-height: 2.8; text-align: center; letter-spacing: 3px; opacity: 0.9; font-size: 17px !important; margin-top: 40px;">
                 我們最敬愛的 <b style="color:var(--gold);">黃明珠 夫人</b><br>
                 於 民國 114 年 12 月 24 日<br>
                 在家人陪伴下 安詳辭世

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<!DOCTYPE html>
-<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta property="og:title" content="【追思】黃明珠 夫人  雲端訃告">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta property="og:title" content="【追思】黃明珠 夫人 雲端訃告">
     <meta property="og:description" content="感謝親友的陪伴與關懷，明珠夫人已化作星辰，就邀您一同參與明珠夫人的追思奠禮。">
     <link rel="icon" href="image/logo.png" type="image/png">
     <meta property="og:image" content="https://24hour.xn--kpry57d/Huang-Mingzhu/image/Write.png">
@@ -30,12 +28,12 @@
             --max-w: 480px;
         }
 
-        /* 鎖定全域字體大小，不受系統設定干擾 */
+        /* 核心鎖定：無視系統字體大小設定 */
         html { 
-            -webkit-text-size-adjust: 100%; 
-            -moz-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100% !important; 
+            -moz-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
             scroll-behavior: smooth;
         }
 
@@ -44,7 +42,6 @@
             -webkit-font-smoothing: antialiased; 
             margin: 0; 
             padding: 0; 
-            /* 防止點擊時出現藍色框 */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -67,10 +64,9 @@
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
             min-height: 100vh;
-            overflow: hidden; /* 防止內容溢出撐大頁面 */
+            overflow: hidden;
         }
 
-        /* 浮水印鎖定 */
         .bg-watermark {
             position: fixed; bottom: 12%; left: 50%; transform: translateX(-50%);
             font-size: 80px; font-weight: 900;
@@ -95,42 +91,13 @@
         section.visible { opacity: 1; transform: translateY(0); }
 
         .section-title { font-size: 15px; letter-spacing: 8px; color: var(--gold); font-weight: 700; margin-bottom: 40px; text-align: center; display: block; }
-        
-        .img-inner { 
-            display: block; max-width: 90%; margin: 0 auto; height: auto; 
-            cursor: pointer; border-radius: 2px; 
-            padding: 8px; background: #fff;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
-        }
-        
-        /* 姓名鎖定：防止字體過大導致換行 */
-        .name-hero { 
-            font-size: 42px; 
-            font-weight: 900; 
-            letter-spacing: 0.2em; 
-            margin: 20px 0; 
-            text-align: center; 
-            white-space: nowrap;
-        }
-        .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
-
-        /* 時間資訊鎖定 */
-        .date-hero { 
-            font-size: 72px; 
-            font-weight: 900; 
-            line-height: 1; 
-            text-align: center; 
-            color: var(--ink); 
-            margin-top: 10px; 
-        }
+        .img-inner { display: block; max-width: 90%; margin: 0 auto; height: auto; cursor: pointer; border-radius: 2px; padding: 8px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.07); }
+        .name-hero { font-size: 42px; font-weight: 900; letter-spacing: 0.2em; margin: 20px 0; text-align: center; white-space: nowrap; }
+        .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; text-align: center;}
+        .date-hero { font-size: 72px; font-weight: 900; line-height: 1; text-align: center; color: var(--ink); margin-top: 10px; }
         .date-sub { text-align: center; font-size: 14px; letter-spacing: 2px; color: var(--sub-ink); }
         
-        .time-grid { 
-            display: flex; justify-content: space-around; padding: 40px 0; 
-            border-top: 1px dashed rgba(180, 151, 122, 0.3); 
-            border-bottom: 1px dashed rgba(180, 151, 122, 0.3);
-            margin: 40px 0; 
-        }
+        .time-grid { display: flex; justify-content: space-around; padding: 40px 0; border-top: 1px dashed rgba(180, 151, 122, 0.3); border-bottom: 1px dashed rgba(180, 151, 122, 0.3); margin: 40px 0; }
         .time-item b { font-size: 38px; font-weight: 600; color: var(--ink); }
         .time-item span { font-size: 11px; display: block; color: var(--gold); letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
 
@@ -138,14 +105,9 @@
         .notice-item { font-size: 13px; color: var(--sub-ink); margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.6; }
         .notice-item::before { content: "◆"; color: var(--gold); margin-right: 10px; font-size: 10px; margin-top: 2px; }
 
-        /* 書法詩詞區域寬度鎖定 */
         .calligraphy-area { padding: 80px 10px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
         .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 100%; max-width: 420px; height: 500px; }
-        .ink-line { 
-            writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 22px; 
-            letter-spacing: 8px; line-height: 1.8; opacity: 0; filter: blur(12px); 
-            white-space: nowrap; margin: 0 4px; 
-        }
+        .ink-line { writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 22px; letter-spacing: 8px; line-height: 1.8; opacity: 0; filter: blur(12px); white-space: nowrap; margin: 0 4px; }
         .ink-last-line { margin-top: 120px !important; margin-right: 12px !important; color: var(--gold); font-weight: 600; }
         .ink-anim { animation: inkFadeIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @keyframes inkFadeIn { 0% { opacity: 0; filter: blur(12px); transform: translateY(-10px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
@@ -167,6 +129,13 @@
         footer { padding: 40px 25px 100px; text-align: center; background: rgba(180, 151, 122, 0.03); }
         .brand-seal { width: 55px; height: 55px; border: 2.5px solid var(--seal-red); display: flex; align-items: center; justify-content: center; border-radius: 4px; transform: rotate(-3deg); margin: 0 auto 20px; }
         .brand-seal span { font-family: 'ZF-Font', serif; font-size: 15px; color: var(--seal-red); font-weight: 900; line-height: 1.1; }
+
+        /* 再次強力鎖定字體不隨系統變大 */
+        p, div, span, b, a {
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+        }
+        .app-wrapper { overflow-x: hidden !important; }
     </style>
 </head>
 
@@ -259,7 +228,7 @@
                 <img src="image/交通00009.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00008.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=台北市立第一殯儀館" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
+            <a href="https://maps.app.goo.gl/uXv7F9mK2i4WpAnSA" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <div class="calligraphy-area" id="thanksSec">
@@ -342,7 +311,7 @@
     }
     
     function copyText() {
-        const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30\n安靈地點：鼎峰會館  [ 清靜廳 ]";
+        const info = "【追思奠禮 ‧ 黃明珠 夫人】\n\n奠禮日期：2026年01月05日 (一)\n地點：台北市立殯儀館 至仁四廳\n家奠：07:50 / 公奠：08:30\n安靈地點：鼎峰會館 [ 清靜廳 ]";
         if (navigator.clipboard) {
             navigator.clipboard.writeText(info).then(() => alert("奠禮資訊已複製。"));
         } else {
@@ -353,11 +322,11 @@
     }
 
     function addCal() { 
-        const title = encodeURIComponent("【追思】黃明珠 夫人  告別奠禮");
+        const title = encodeURIComponent("【追思】黃明珠 夫人 告別奠禮");
         const loc = encodeURIComponent("台北市立殯儀館 至仁四廳");
-        // 修正：時間同步為 2026/01/05
         window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260105T075000/20260105T093000&location=${loc}&details=家奠07:50+公奠08:30`); 
     }
 </script>
 
 </body>
+</html>

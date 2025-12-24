@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -20,34 +22,58 @@
         }
 
         :root {
-            --paper: #f7f2ed; /* 質感奶茶色 */
-            --ink: #3d3630;   /* 深咖啡墨色 */
-            --gold: #b4977a;  /* 質感金 */
+            --paper: #f7f2ed; 
+            --ink: #3d3630;   
+            --gold: #b4977a;  
             --sub-ink: #7a7169;
             --seal-red: #a52a2a;
             --max-w: 480px;
         }
 
-        /* 基礎設置 */
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
-        html, body { 
-            width: 100%; max-width: 100vw; overflow-x: hidden; 
-            background-color: #e5ddd5; color: var(--ink); 
-            font-family: 'Noto Serif TC', serif; line-height: 1.8; 
+        /* 鎖定全域字體大小，不受系統設定干擾 */
+        html { 
+            -webkit-text-size-adjust: 100%; 
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-font-smoothing: antialiased; 
+            margin: 0; 
+            padding: 0; 
+            /* 防止點擊時出現藍色框 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            width: 100%; 
+            max-width: 100vw; 
+            overflow-x: hidden; 
+            background-color: #e5ddd5; 
+            color: var(--ink); 
+            font-family: 'Noto Serif TC', serif; 
+            line-height: 1.8; 
         }
 
         .app-wrapper { 
-            width: 100%; max-width: var(--max-w); margin: 0 auto; position: relative; 
+            width: 100%; 
+            max-width: var(--max-w); 
+            margin: 0 auto; 
+            position: relative; 
             background-color: var(--paper); 
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
             min-height: 100vh;
+            overflow: hidden; /* 防止內容溢出撐大頁面 */
         }
 
-        /* 浮水印 */
+        /* 浮水印鎖定 */
         .bg-watermark {
             position: fixed; bottom: 12%; left: 50%; transform: translateX(-50%);
-            font-size: clamp(80px, 18vw, 110px); font-weight: 900;
+            font-size: 80px; font-weight: 900;
             color: rgba(180, 151, 122, 0.05); letter-spacing: 15px;
             z-index: 0; pointer-events: none; white-space: nowrap; text-transform: uppercase;
         }
@@ -63,14 +89,13 @@
         }
 
         section { 
-            padding: 70px 22px; width: 100%; position: relative; z-index: 1; 
+            padding: 60px 22px; width: 100%; position: relative; z-index: 1; 
             opacity: 0; transform: translateY(30px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         section.visible { opacity: 1; transform: translateY(0); }
 
         .section-title { font-size: 15px; letter-spacing: 8px; color: var(--gold); font-weight: 700; margin-bottom: 40px; text-align: center; display: block; }
         
-        /* 遺像裝飾 */
         .img-inner { 
             display: block; max-width: 90%; margin: 0 auto; height: auto; 
             cursor: pointer; border-radius: 2px; 
@@ -78,11 +103,26 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
         }
         
-        .name-hero { font-size: clamp(38px, 11vw, 50px); font-weight: 900; letter-spacing: 0.2em; margin: 20px 0; text-align: center; }
+        /* 姓名鎖定：防止字體過大導致換行 */
+        .name-hero { 
+            font-size: 42px; 
+            font-weight: 900; 
+            letter-spacing: 0.2em; 
+            margin: 20px 0; 
+            text-align: center; 
+            white-space: nowrap;
+        }
         .year-label { font-size: 13px; letter-spacing: 6px; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
 
-        /* 時間資訊 */
-        .date-hero { font-size: clamp(70px, 18vw, 85px); font-weight: 900; line-height: 1; text-align: center; color: var(--ink); margin-top: 10px; }
+        /* 時間資訊鎖定 */
+        .date-hero { 
+            font-size: 72px; 
+            font-weight: 900; 
+            line-height: 1; 
+            text-align: center; 
+            color: var(--ink); 
+            margin-top: 10px; 
+        }
         .date-sub { text-align: center; font-size: 14px; letter-spacing: 2px; color: var(--sub-ink); }
         
         .time-grid { 
@@ -91,22 +131,22 @@
             border-bottom: 1px dashed rgba(180, 151, 122, 0.3);
             margin: 40px 0; 
         }
-        .time-item b { font-size: 42px; font-weight: 600; color: var(--ink); }
+        .time-item b { font-size: 38px; font-weight: 600; color: var(--ink); }
         .time-item span { font-size: 11px; display: block; color: var(--gold); letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
 
         .notice-card { background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(180, 151, 122, 0.15); border-radius: 12px; padding: 25px; margin-top: 30px; }
         .notice-item { font-size: 13px; color: var(--sub-ink); margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.6; }
         .notice-item::before { content: "◆"; color: var(--gold); margin-right: 10px; font-size: 10px; margin-top: 2px; }
 
-        /* 書法詩詞 */
-        .calligraphy-area { padding: 100px 10px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
-        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 95%; max-width: 420px; height: 520px; }
+        /* 書法詩詞區域寬度鎖定 */
+        .calligraphy-area { padding: 80px 10px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
+        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 100%; max-width: 420px; height: 500px; }
         .ink-line { 
-            writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: clamp(20px, 5.5vw, 24px); 
-            letter-spacing: clamp(6px, 1.8vw, 10px); line-height: 1.8; opacity: 0; filter: blur(12px); 
-            white-space: nowrap; margin: 0 5px; 
+            writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 22px; 
+            letter-spacing: 8px; line-height: 1.8; opacity: 0; filter: blur(12px); 
+            white-space: nowrap; margin: 0 4px; 
         }
-        .ink-last-line { margin-top: 140px !important; margin-right: 15px !important; color: var(--gold); font-weight: 600; }
+        .ink-last-line { margin-top: 120px !important; margin-right: 12px !important; color: var(--gold); font-weight: 600; }
         .ink-anim { animation: inkFadeIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @keyframes inkFadeIn { 0% { opacity: 0; filter: blur(12px); transform: translateY(-10px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
 
@@ -129,6 +169,7 @@
         .brand-seal span { font-family: 'ZF-Font', serif; font-size: 15px; color: var(--seal-red); font-weight: 900; line-height: 1.1; }
     </style>
 </head>
+
 <body>
 
 <audio id="bgm" loop preload="auto"><source src="Misson Part 1.mp3" type="audio/mp3"></audio>
@@ -142,7 +183,7 @@
             <a href="javascript:void(0)" class="top-btn" onclick="copyText()">
                 <img src="https://img.icons8.com/material-outlined/24/777777/copy.png"> 複製資訊
             </a>
-            <a href="https://line.me/R/msg/text/?【追思】賴鏡孚先生 奠禮資訊%0ahttps://24hour.台灣/Lai-JingFu" class="top-btn">
+            <a href="https://line.me/R/msg/text/?【追思】黃明珠 夫人 奠禮資訊%0ahttps://24hour.台灣/Huang-Mingzhu" class="top-btn">
                 <img src="https://img.icons8.com/material-rounded/24/06C755/line-me.png"> 分享親友
             </a>
         </div>
@@ -153,10 +194,10 @@
             <div style="text-align:center;">
                 <div class="year-label">1927 — 2025</div>
                 <img src="image/IMG_6779.jpeg" class="img-inner" onclick="zoom(this.src)">
-                <div class="name-hero">黃明珠 <span style="font-size: 20px; font-weight: 400; letter-spacing: 2px;">夫人</div>
+                <div class="name-hero">黃明珠 <span style="font-size: 20px; font-weight: 400; letter-spacing: 2px;">夫人</span></div>
                 <p style="font-size: 15px; color: var(--ink); line-height: 2.8; letter-spacing: 1.8px; margin-top: 30px; padding: 0 15px;">
                     我們最敬愛的 <span style="font-weight: 700; border-bottom: 1.5px solid var(--gold);">黃明珠 夫人</span><br>
-                    於 民國 115 年 01 月 05 日<br>
+                    於 民國 114 年 12 月 24 日<br>
                     在家人的陪伴與守護下<br>
                     安詳離世<br><br>
                     謹擇於 <span style="color: var(--gold); font-weight: 700;">民國115年01月05日（星期一）</span><br>
@@ -218,7 +259,7 @@
                 <img src="image/交通00009.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
                 <img src="image/交通00008.JPG" style="width:100%; border-radius: 4px;" onclick="zoom(this.src)">
             </div>
-            <a href="https://maps.app.goo.gl/5bT86xo47NHM6XZm7?g_st=ic" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=台北市立第一殯儀館" target="_blank" class="btn-action" style="border-color:#d1c4b9; color:#8e8276;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <div class="calligraphy-area" id="thanksSec">
@@ -272,7 +313,6 @@
 <div id="lightbox" onclick="this.style.display='none'"><img id="lbi" src=""></div>
 
 <script>
-    // 滾動與動畫
     const obs = new IntersectionObserver(es => es.forEach(e => {
         if(e.isIntersecting) {
             e.target.classList.add('visible');
@@ -285,7 +325,6 @@
     }), {threshold: 0.1});
     document.querySelectorAll('section, .calligraphy-area').forEach(s => obs.observe(s));
 
-    // 音樂控制 (修正邏輯確保必播)
     const bgm = document.getElementById('bgm');
     const startM = () => { 
         if(bgm.paused){ 
@@ -315,10 +354,10 @@
 
     function addCal() { 
         const title = encodeURIComponent("【追思】黃明珠 夫人  告別奠禮");
-        const loc = encodeURIComponent("台北市立殯儀館 至愛三廳");
-        window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260105T015000Z/20260105T033000Z&location=${loc}&details=家奠07:50+公奠08:30`); 
+        const loc = encodeURIComponent("台北市立殯儀館 至仁四廳");
+        // 修正：時間同步為 2026/01/05
+        window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260105T075000/20260105T093000&location=${loc}&details=家奠07:50+公奠08:30`); 
     }
 </script>
 
 </body>
-</html>
